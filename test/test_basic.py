@@ -7,3 +7,4 @@ def test_pretty_float():
 
 def test_pretty_int():
     assert pn.pretty_int(1234) == '1,234'
+    assert False
