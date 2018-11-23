@@ -12,7 +12,7 @@ def pretty_float(f):
 
 
 def pretty_int(i):
-    return str(i)
+    return '{:,}'.format(i)
 
 
 def pretty_number(n):
