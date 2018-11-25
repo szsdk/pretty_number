@@ -2,13 +2,16 @@ from math import floor, log10
 _to_super = dict(zip("0123456789-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻"))
 
 
-def pretty_float(f):
+def pretty_float(f, significant=4):
+    if significant is None and decimal is None:
+        decimal = 3
     exponet = floor(log10(f))
-    if -2 < exponet <= 3:
-        return f"{f:.4f}"
-    m = f * 10 ** (-exponet)
     s_exp = ''.join([_to_super[i] for i in str(exponet)])
-    return f"{m:.4f} × 10{s_exp}"
+    m = f * 10 ** (-exponet)
+
+    if -3 < exponet < significant:
+        return f"{{:,.{significant-exponet-1}f}}".format(f)
+    return f"%1.{significant-1}f × 10{s_exp}" % m
 
 
 def pretty_int(i):
